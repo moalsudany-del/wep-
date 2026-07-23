@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAI | Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-row">
+            <div class="header-brand">
+                <span class="logo-text">TAI</span>
+                <span class="logo-subtitle" data-i18n="siteSubtitle">لوحة تحكم ذكية</span>
+            </div>
+            <div class="header-actions" role="toolbar" aria-label="عناصر التحكم الرئيسية">
+                <button id="sidebar-toggle" class="header-icon-btn" aria-label="فتح القائمة الجانبية" aria-controls="sidebar-menu" aria-expanded="false">
+                    <span class="menu-logo" aria-hidden="true">
+                        <span class="menu-logo-mark" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 18V6h4l4 6-4 6H6Z" fill="white" opacity=".9"/>
+                                <path d="M16 18V6h2v12h-2Z" fill="white" opacity=".7"/>
+                            </svg>
+                        </span>
+                        <span class="menu-icon" aria-hidden="true">☰</span>
+                    </span>
+                </button>
+                <button id="theme-toggle" class="header-control-btn" aria-label="تبديل الوضع"></button>
+                <button id="lang-toggle" class="lang-btn" aria-label="تبديل اللغة">EN</button>
+            </div>
+        </div>
+    </header>
+    <div id="sidebar-menu" class="sidebar-menu" aria-hidden="true">
+        <div class="logo-container" style="margin-bottom:24px;">
+            <span style="font-size:2.2rem;font-weight:bold;background:linear-gradient(to left,#00d4ff,#0055ff,#a259ff);-webkit-background-clip :text;-webkit-text-fill-color:transparent;display:inline-block;letter-spacing:0.12em;">TAI</span>
+        </div>
+        <nav class="sidebar-nav" style="display:flex;flex-direction:column;gap:18px;">
+            <div class="sidebar-home">
+                <div class="sidebar-home-btn sidebar-item">
+                    <span class="sidebar-item-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path d="M4 11.5L12 5l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-8.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                    <span class="sidebar-home-label sidebar-item-label">القائمة الرئيسية</span>
+                </div>
+                <div class="sidebar-submenu is-collapsed">
+                    <a class="header-link submenu-link" href="index.html#about">عني</a>
+                    <a class="header-link submenu-link" href="index.html#skills">مهاراتي</a>
+                    <a class="header-link submenu-link" href="index.html#social-icons-section">تواصل معي</a>
+                </div>
+            </div>
+            <a class="header-link codes-link sidebar-item" href="codes.html" target="_blank" rel="noopener">
+                <span class="sidebar-item-icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M8 8l-4 4 4 4M16 8l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span class="sidebar-item-label">الاكواد</span>
+            </a>
+            <a class="header-link shop-link sidebar-item" href="shop.html" target="_blank" rel="noopener">
+                <span class="sidebar-item-icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 8h12l-1 12H7L6 8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                        <path d="M9 8a3 3 0 0 1 6 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    </svg>
+                </span>
+                <span class="sidebar-item-label">المتجر</span>
+            </a>
+            <a class="header-link login-link sidebar-item" href="login.html">
+                <span class="sidebar-item-icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4z" stroke="currentColor" stroke-width="1.6"/>
+                        <path d="M4 20a8 8 0 0 1 16 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    </svg>
+                </span>
+                <span class="sidebar-item-label">تسجيل الدخول</span>
+            </a>
+        </nav>
+    </div>
+
+    <section class="auth-card animate">
+        <div class="auth-errors" id="auth-errors" hidden></div>
+        <div class="auth-tabs" role="tablist">
+            <button class="auth-tab is-active" data-target="login-panel" type="button" data-i18n="loginTab">تسجيل الدخول</button>
+            <button class="auth-tab" data-target="register-panel" type="button" data-i18n="registerTab">إنشاء حساب</button>
+        </div>
+        <div class="auth-panel is-active" id="login-panel">
+            <form method="post" action="login-to-tai-world.php" class="auth-form">
+                <input type="hidden" name="mode" value="login">
+                <input class="code-search" type="email" name="email" placeholder="البريد الإلكتروني" data-i18n-placeholder="emailPlaceholder">
+                <input class="code-search" type="password" name="password" placeholder="كلمة المرور" data-i18n-placeholder="passwordPlaceholder" required>
+                <button class="btn-buy login-primary" type="submit" data-i18n="loginButton">دخول</button>
+            </form>
+        </div>
+        <div class="auth-panel" id="register-panel">
+            <form method="post" action="login-to-tai-world.php" class="auth-form">
+                <input type="hidden" name="mode" value="register">
+                <input class="code-search" type="text" name="name" placeholder="الاسم الكامل" data-i18n-placeholder="fullNamePlaceholder" required>
+                <label class="option-label" data-i18n="ageLabel">العمر</label>
+                <select class="code-search" name="age" required>
+                    <option value="" data-i18n="agePlaceholder">اختر العمر</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                    <option value="32">32</option>
+                    <option value="33">33</option>
+                    <option value="34">34</option>
+                    <option value="35">35</option>
+                    <option value="36">36</option>
+                    <option value="37">37</option>
+                    <option value="38">38</option>
+                    <option value="39">39</option>
+                    <option value="40">40</option>
+                    <option value="41">41</option>
+                    <option value="42">42</option>
+                    <option value="43">43</option>
+                    <option value="44">44</option>
+                    <option value="45">45</option>
+                    <option value="46">46</option>
+                    <option value="47">47</option>
+                    <option value="48">48</option>
+                    <option value="49">49</option>
+                    <option value="50">50</option>
+                </select>
+                <input class="code-search" type="text" name="department" placeholder="القسم" data-i18n-placeholder="departmentPlaceholder" required>
+                <input class="code-search" type="text" name="university" placeholder="الجامعة" data-i18n-placeholder="universityPlaceholder" required>
+
+                <div class="option-group">
+                    <span class="option-label" data-i18n="stageLabel">المرحلة</span>
+                    <div class="option-buttons">
+                        <label class="option-btn"><input type="radio" name="stage" value="1" required> <span data-i18n="stage1">المرحلة الاولى</span></label>
+                        <label class="option-btn"><input type="radio" name="stage" value="2"> <span data-i18n="stage2">المرحلة الثانية</span></label>
+                        <label class="option-btn"><input type="radio" name="stage" value="3"> <span data-i18n="stage3">المرحلة الثالثة</span></label>
+                        <label class="option-btn"><input type="radio" name="stage" value="4"> <span data-i18n="stage4">المرحلة الرابعة</span></label>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <span class="option-label" data-i18n="periodLabel">الدوام</span>
+                    <div class="option-buttons">
+                        <label class="option-btn"><input type="radio" name="period" value="morning" required> <span data-i18n="periodMorning">صباحي</span></label>
+                        <label class="option-btn"><input type="radio" name="period" value="evening"> <span data-i18n="periodEvening">مسائي</span></label>
+                        <label class="option-btn"><input type="radio" name="period" value="hosting"> <span data-i18n="periodHosting">استضافة</span></label>
+                    </div>
+                </div>
+                <input class="code-search" type="email" name="email" placeholder="البريد الإلكتروني" data-i18n-placeholder="emailPlaceholder" required>
+                <input class="code-search" type="password" name="password" placeholder="كلمة المرور" data-i18n-placeholder="passwordPlaceholder" required>
+                <button class="btn-buy login-primary" type="submit" data-i18n="registerButton">إنشاء حساب</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>جميع الحقوق محفوظة © 2026 | صمم بواسطة محمد باقر - مهندس ذكاء اصطناعي</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        (function() {
+            var tabs = document.querySelectorAll('.auth-tab');
+            var panels = document.querySelectorAll('.auth-panel');
+            var params = new URLSearchParams(window.location.search);
+            var mode = params.get('mode');
+            var errors = params.get('errors');
+            var errorBox = document.getElementById('auth-errors');
+
+            function activateTab(targetId) {
+                tabs.forEach(function(t) { t.classList.remove('is-active'); });
+                panels.forEach(function(panel) { panel.classList.remove('is-active'); });
+                var targetTab = Array.prototype.find.call(tabs, function(t) {
+                    return t.getAttribute('data-target') === targetId;
+                });
+                var panel = document.getElementById(targetId);
+                if (targetTab) targetTab.classList.add('is-active');
+                if (panel) panel.classList.add('is-active');
+            }
+
+            if (mode === 'register') {
+                activateTab('register-panel');
+            } else if (mode === 'login') {
+                activateTab('login-panel');
+            }
+
+            if (errors && errorBox) {
+                var list = errors.split(',').filter(Boolean);
+                if (list.length) {
+                    errorBox.innerHTML = '';
+                    list.forEach(function(key) {
+                        var item = document.createElement('div');
+                        item.setAttribute('data-i18n', key);
+                        item.textContent = key;
+                        errorBox.appendChild(item);
+                    });
+                    errorBox.hidden = false;
+                    if (typeof applyI18n === 'function') {
+                        applyI18n(window.currentLang || 'ar');
+                    }
+                }
+            }
+
+            tabs.forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    var targetId = tab.getAttribute('data-target');
+                    activateTab(targetId);
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
